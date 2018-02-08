@@ -486,8 +486,15 @@ private:
             ori = _objectRepository->FindObject(&entry);
             if (ori == nullptr)
             {
-                invalidEntries.push_back(entry);
-                ReportMissingObject(&entry);
+                if (entry.GetType() == OBJECT_TYPE_SCENARIO_TEXT)
+                {
+                    // Ignore missing STEX objects
+                }
+                else
+                {
+                    invalidEntries.push_back(entry);
+                    ReportMissingObject(&entry);
+                }
             }
             else
             {
@@ -521,7 +528,7 @@ private:
             if (!object_entry_is_empty(entry))
             {
                 ori = _objectRepository->FindObject(entry);
-                if (ori == nullptr)
+                if (ori == nullptr && entry->GetType() != OBJECT_TYPE_SCENARIO_TEXT)
                 {
                     missingObjects = true;
                     ReportMissingObject(entry);

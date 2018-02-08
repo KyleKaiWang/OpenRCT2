@@ -85,6 +85,8 @@ typedef struct rct_object_entry {
         };
     };
 
+    uint8 GetType() const { return flags & 0x0F; }
+
 } rct_object_entry;
 assert_struct_size(rct_object_entry, 0x10);
 
