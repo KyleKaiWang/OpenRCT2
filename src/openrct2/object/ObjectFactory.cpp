@@ -130,8 +130,6 @@ namespace ObjectFactory
         }
         catch (const std::exception &)
         {
-            Console::Error::WriteLine("Unable to open or read '%s'", path);
-
             delete result;
             result = nullptr;
         }
